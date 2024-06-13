@@ -1,0 +1,60 @@
+﻿@page
+@model aplicacionNetRazor.Pages.Cursos.IndexModel
+@{
+    ViewData["Title"] = "Lista de cursos";
+}
+
+<h3 class="text-center"> Mira nuestro cursos en: <a href="https://render2web.com/cursos"> www.render2web.com/cursos </a></h3>
+
+
+<div class="card">
+
+    <div class="card_header">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2 class="text-info">Lista de cursos</h2>
+            </div>
+            <div class="col-sm-6">
+                <a asp -asp-page="Crear" class=" btn btn-primary"crear nuevo curso</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="card_body">
+        @if (Model.Cursos.Count() > 0)
+        {
+            <br /><br />
+            <table class="table table progress-bar-striped borde">
+                <tr class="table-secondary">
+                    <th>@Html.DisplayNameFor(m => m.Cursos.First().Id)</th>
+                    <th>@Html.DisplayNameFor(m => m.Cursos.First().NombreCurso)</th>
+                    <th>@Html.DisplayNameFor(m => m.Cursos.First().CantidadClase)</th>
+                    <th>@Html.DisplayNameFor(m => m.Cursos.First().Precio)</th>
+                    <th>@Html.DisplayNameFor(m => m.Cursos.First().FechaCreacion)</th>
+                    <th>Acciones</th>
+                </tr>
+                @foreach(var item in Model.Cursos)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(m => item.Id)</td>
+                        <td>@Html.DisplayFor(m => item.NombreCurso)</td>
+                        <td>@Html.DisplayFor(m => item.CantidadClase)</td>
+                        <td>@Html.DisplayFor(m => item.Precio)</td>
+                        <td>@Html.DisplayFor(m => item.FechaCreacion)</td>
+                        <td>
+                            <a a asp-rout-id="@item.Id" asp-page="Editar" class="btn btn-success btn-sm">Editar</a>
+                            <button asp-page-handñer="Borrar" asp-router-id="@item.Id" onclick="return conform('Esta seguro de borrar ')" class="btn btn-danger btn-sm">Borrar esto</button>
+                        </td>
+                    </tr>
+                   
+                }
+            </table>
+        }
+        else
+        {
+            <p>No hay cursos disponibles</p>
+        }
+
+        </div>
+</div>
+
